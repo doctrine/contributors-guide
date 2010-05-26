@@ -1,0 +1,21 @@
+Welcome to the Doctrine Project Contributors Guide. This documentation aims to
+document how contributors and collaborators should work when using git, development
+workflow, build process, dependency management, etc.
+
+++ About
+
+The Doctrine Project is the home of a selected set of PHP libraries primarily
+focused on providing persistence services and related functionality. Its prize
+projects are a Object Relational Mapper and the Database Abstraction Layer it
+is built on top of. You can view a list of all [projects](http://www.doctrine-project.org/projects)
+on the website.
+
+++ Contributors vs Collaborators
+
+Before continuing you need to understand the difference between a contributor
+and a collaborator.
+
+* Contributor: A contributor is someone from the outside not on the core development team of the project that wants to contribute some changes to a project.
+* Collaborator: A collaborator is someone on the core development team of the project and has commit access to the main repository of the project.
+
+Continue reading to learn about the workflow for both contributors and collaborators.

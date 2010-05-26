@@ -1,0 +1,173 @@
+++ Contributor
+
+A contributor can be anyone! It could be you. Continue reading this section if
+you wish to get involved and contribute back to a Doctrine project.
+
++++ Initial Setup
+
+* Setup a "github":http://github.com account
+* Fork the "repository":http://github.com/doctrine/doctrine2/
+* Clone your fork locally
+
+    $ git clone git@github.com:hobodave/doctrine2.git
+
+* Enter the doctrine2 directory and add the @doctrine@ remote
+
+    $ cd doctrine2
+    $ git remote add doctrine git://github.com/doctrine/doctrine2.git
+
+* Adjust your branch to track the doctrine master remote branch, by default it'll track your origin remote's master:
+
+    $ git config branch.master.remote doctrine
+
++++ Keeping your master up-to-date!
+
+Once all this is done, you'll be able to keep your local master up to date with
+the simple command:
+
+    $ git checkout master
+    $ git pull --rebase
+
+Alternatively, you can synchronize your master from any branch with the full
+fetch/rebase syntax:
+
+    $ git fetch doctrine
+    $ git rebase doctrine/master master
+
+Using rebase pull will do a rebase instead of a merge, which will keep a linear
+history with no unnecessary merge commits. It'll also rewind, apply and then
+reapply your commits at the HEAD.
+
++++ Branching Model
+
+The following names will be used to differentiate between the different repositories:
+
+* **doctrine** - The "official" Doctrine repository
+* **origin** - Your fork of the official repository on github
+* **local** - This will be your local clone of @origin@
+
+As a **contributor** you will push your completed @local@ topic branch to @origin@.
+As a **contributor** you will pull updates from @doctrine@.
+As a **collaborator** (write-access) you will merge branches from contributors into @doctrine@.
+
++++ Primary Branches
+
+The **doctrine** repository holds the following primary branches:
+
+* **doctrine/master** Development towards the next release.
+* **doctrine/release-\*** Maintenance branches of existing releases.
+
+These branches exist in parallel and are defined as follows:
+
+**doctrine/master** is the branch where the source code of **HEAD** always
+reflects the latest version. Each released stable version will be a tagged
+commit in a **doctrine/release-\*** branch. Each released unstable version will
+be a tagged commit in the **doctrine/master** branch.
+
+> **NOTE**
+> You should never commit to your forked **origin/master**. Changes to **origin/master**
+> will never be merged into **doctrine/master**. All work must be done in a
+> **topic branch**, which are explained below.
+
++++ Topic Branches
+
+Topic branches are for contributors to develop bug fixes, new features, etc. so
+that they can be easily merged to **master**. They must follow a few simple rules
+as listed below:
+
+* May branch off from: **master** or a **release-\*** branch.
+* Must merge back into: **master** and any affected **release-\*** branch that should get the same changes, but remember that release branches usually only get bug fixes, with rare exceptions.
+* Branch naming convention: anything except **master** and **release-\***. If a topic is related to a JIRA issue then the branch should be named after that ticket, e.g. **DDC-588**
+
+Topic branches are used to develop new features and fix reported issues. When
+starting development of a feature, the target release in which this feature will
+be incorporated may well be unknown. The essence of a topic branch is that it
+exists as long as the feature is in development, but will eventually be merged
+back into **master** or a **release-\*** branch (to add the new feature or bugfix
+to a next release) or discarded (in case of a disappointing experiment).
+
+Topic branches should exist in your **local** and **origin** repositories only,
+there is no need for them to exist in **doctrine**.
+
++++ Working on topic branches
+
+First create an appropriately named branch. When starting work on a new topic,
+branch off from **doctrine/master** or a **doctrine/release-\*** branch:
+
+    $ git checkout -b DDC-588 doctrine/master
+    Switched to a new branch "DDC-588"
+
+Now do some work, make some changes then commit them:
+
+    $ git status
+    $ git commit <filespec>
+
+Next, merge or rebase your commit against **doctrine/master**. With your work
+done in a **local** topic branch, you'll want to assist upstream merge by
+rebasing your commits. You can either do this manually with `fetch` then `rebase`,
+or use the `pull --rebase` shortcut. You may encounter merge conflicts, which you
+should fix and then mark as fixed with `add`, and then continue rebasing with
+`rebase --continue`. At any stage, you can abort the rebase with `rebase --abort`
+unlike nasty merges which will leave files strewn everywhere.
+
+> **CAUTION**
+> Please note that once you have pushed your branch remotely you MUST NOT rebase!
+
+    $ git fetch doctrine
+    $ git rebase doctrine/master DDC-588
+
+or (uses tracking branch shortcuts):
+
+    $ git pull --rebase
+
+> **CAUTION**
+> You must not rebase if you have pushed your branch to **origin**.
+
+If you need to pull master into your branch after it has already been pushed remotely, simply use:
+
+    $ git pull
+
+Push your branch to **origin**:
+
+Finished topic branches should be pushed to **origin** for a **collaborator**
+to review and pull into **doctrine** as appropriate:
+
+    $ git push origin DDC-588
+    To git@github.com:hobodave/doctrine2.git
+        * [new branch]      DDC-588 -> DDC-588</pre>
+
+
+Now you are read to send a pull request from this branch, and update JIRA,
+to let a collaborator know your branch can be merged.
+
++++ Topic Branch Cleanup
+
+Once your work has been merged by the branch maintainer, it will no longer be
+necessary to keep the local branch or remote branch, so you can remove them!
+
+Sync your local master:
+
+    $ git checkout master
+    $ git pull --rebase
+
+Remove your local branch using -d to ensure that it has been merged by upstream.
+Branch -d will not delete a branch that is not an ancestor of your current head.
+
+From the git-branch man page:
+
+<pre>
+-d 
+    Delete a branch. The branch must be fully merged in HEAD.
+-D 
+    Delete a branch irrespective of its merged status.
+</pre>
+
+Remove your local branch:
+
+    $ git branch -d DDC-588
+
+Remove your remote branch at **origin**:
+
+    $ git push origin :DDC-588
+
+++ Collaborator
