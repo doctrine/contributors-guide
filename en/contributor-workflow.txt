@@ -44,11 +44,11 @@ The following names will be used to differentiate between the different reposito
 
 * **doctrine** - The "official" Doctrine repository
 * **origin** - Your fork of the official repository on github
-* **local** - This will be your local clone of @origin@
+* **local** - This will be your local clone of **origin**
 
-As a **contributor** you will push your completed @local@ topic branch to @origin@.
-As a **contributor** you will pull updates from @doctrine@.
-As a **collaborator** (write-access) you will merge branches from contributors into @doctrine@.
+As a **contributor** you will push your completed **local** topic branch to **origin**.
+As a **contributor** you will pull updates from **doctrine**.
+As a **collaborator** (write-access) you will merge branches from contributors into **doctrine**.
 
 ++ Primary Branches
 
