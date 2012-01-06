@@ -137,7 +137,7 @@ to review and pull into **doctrine** as appropriate:
         * [new branch]      DDC-588 -> DDC-588</pre>
 
 
-Now you are read to send a pull request from this branch, and update JIRA,
+Now you are ready to send a pull request from this branch, and update JIRA,
 to let a collaborator know your branch can be merged.
 
 +++ Topic Branch Cleanup
